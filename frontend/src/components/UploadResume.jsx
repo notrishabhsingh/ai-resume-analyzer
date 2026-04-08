@@ -31,7 +31,7 @@ formData.append("resume",file)
 setLoading(true)
 
 const res = await axios.post(
-"http://localhost:5000/api/resume/upload",
+"https://ai-resume-analyzer-uptg.onrender.com/api/resume/upload",
 formData
 )
 
@@ -48,7 +48,7 @@ setLoading(false)
 const checkMatch = async()=>{
 
 const res = await axios.post(
-"http://localhost:5000/api/resume/match",
+"https://ai-resume-analyzer-uptg.onrender.com/api/resume/match",
 {
 resumeText,
 jobDescription
@@ -65,7 +65,7 @@ setMatch(res.data)
 const improve = async()=>{
 
 const res = await axios.post(
-"http://localhost:5000/api/resume/improve",
+"https://ai-resume-analyzer-uptg.onrender.com/api/resume/improve",
 { text: bullet }
 )
 
