@@ -1,0 +1,64 @@
+@import "tailwindcss";
+
+/* Global layout */
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: #020617;
+  color: white;
+}
+
+/* Smooth font rendering */
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Animated gradient blobs */
+
+@keyframes blob {
+  0% {
+    transform: translate(0px,0px) scale(1);
+  }
+
+  33% {
+    transform: translate(40px,-60px) scale(1.1);
+  }
+
+  66% {
+    transform: translate(-30px,30px) scale(0.9);
+  }
+
+  100% {
+    transform: translate(0px,0px) scale(1);
+  }
+}
+
+/* Animation class */
+
+.animate-blob {
+  animation: blob 18s infinite ease-in-out;
+}
+
+/* Delays so blobs move differently */
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
+}
+
+/* Optional glass effect helper */
+
+.glass-card {
+  backdrop-filter: blur(20px);
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+}
