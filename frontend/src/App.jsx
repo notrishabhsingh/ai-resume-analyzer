@@ -4,7 +4,7 @@ function App() {
 
 return (
 
-<div className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#020617] text-white">
+<div className="relative min-h-screen bg-[#020617] text-white">
 
 {/* Gradient mesh background */}
 
