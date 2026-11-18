@@ -46,8 +46,12 @@ function UploadResume() {
 
       setAnalysis(data.analysis)
       setResumeText(data.resumeText)
-    } catch {
-      setError("Upload failed. Please try again.")
+    } catch (err) {
+      setError(
+        err?.response?.data?.error ||
+          err?.response?.data?.analysis?.error ||
+          "Upload failed. Please try again."
+      )
     }
 
     setLoading(false)
