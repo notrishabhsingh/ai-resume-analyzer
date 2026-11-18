@@ -10,7 +10,10 @@ const {
   improveBullet
 } = require("../services/aiService")
 
-const upload = multer({ dest: "uploads/" })
+const upload = multer({
+  storage: multer.memoryStorage(),
+  limits: { fileSize: 10 * 1024 * 1024 }
+})
 
 router.post("/upload", upload.single("resume"), async (req, res) => {
   try {
@@ -18,7 +21,7 @@ router.post("/upload", upload.single("resume"), async (req, res) => {
       return res.status(400).json({ error: "No file uploaded" })
     }
 
-    const resumeText = await parseResume(req.file.path)
+    const resumeText = await parseResume(req.file.buffer)
     if (!resumeText || resumeText.trim().length < 20) {
       return res.status(400).json({
         isResume: false,

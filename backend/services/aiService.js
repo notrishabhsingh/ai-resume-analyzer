@@ -1,5 +1,10 @@
 let groqClient = null
 
+// llama-3.3-70b-versatile is no longer available to this API key
+// (Groq returns model_not_found), so the model is configurable and
+// defaults to a model the key can access.
+const DEFAULT_MODEL = process.env.GROQ_MODEL || "openai/gpt-oss-120b"
+
 async function getGroqClient() {
   if (!groqClient) {
     const Groq = (await import("groq-sdk")).default
@@ -67,8 +72,10 @@ The detailedAnalysis must contain exactly 10-12 points with specific, actionable
         content: resumeText
       }
     ],
-    model: "llama-3.3-70b-versatile",
-    temperature: 0.3
+    model: DEFAULT_MODEL,
+    temperature: 0.3,
+    max_tokens: 3000,
+    response_format: { type: "json_object" }
   })
 
   const text = completion.choices[0].message.content
@@ -142,8 +149,10 @@ Compare the RESUME with the JOB DESCRIPTION. Return ONLY valid JSON:
         content: `RESUME:\n${resumeText}\n\nJOB DESCRIPTION:\n${jobDescription}`
       }
     ],
-    model: "llama-3.3-70b-versatile",
-    temperature: 0.2
+    model: DEFAULT_MODEL,
+    temperature: 0.2,
+    max_tokens: 3000,
+    response_format: { type: "json_object" }
   })
 
   const text = completion.choices[0].message.content
@@ -196,8 +205,10 @@ Include 3-5 actionable steps with concrete examples.`
         content: bulletText
       }
     ],
-    model: "llama-3.3-70b-versatile",
-    temperature: 0.3
+    model: DEFAULT_MODEL,
+    temperature: 0.3,
+    max_tokens: 3000,
+    response_format: { type: "json_object" }
   })
 
   const response = completion.choices[0].message.content
